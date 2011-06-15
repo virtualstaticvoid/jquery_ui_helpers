@@ -1,16 +1,16 @@
-# Rails 3 View Helpers for jQuery UI Widgets
+# Rails 3 View Helpers for [jQuery UI](http://jqueryui.com) Widgets
 
 This project contains helper classes for creating jQuery UI widgets in your Rails views.
 
 The following helpers have been implemented:
 
-* Accordian
-* ButtonSet
-* Tabs
+* [Accordian](http://jqueryui.com/demos/accordion)
+* [Button](http://jqueryui.com/demos/button)
+* [Tabs](http://jqueryui.com/demos/tabs)
 
 ## Getting Started
 
-Install jQueryUI components, and copy the required helper files into <rails_root>/app/helpers
+Install [jQueryUI](http://jqueryui.com) components, and copy the required helper files into <rails_root>/app/helpers
 
 ## Using Helpers
 
@@ -57,11 +57,11 @@ Detailed documentation of each helper needs to be added to the wiki.
 
 Additional helpers for the other jQuery UI widgets will be added, including:
 
-* Autocomplete
-* Datepicker
-* Dialog
-* Progressbar
-* Slider
+* [Autocomplete](http://jqueryui.com/demos/autocomplete)
+* [Datepicker](http://jqueryui.com/demos/datepicker)
+* [Dialog](http://jqueryui.com/demos/datepicker)
+* [Progressbar](http://jqueryui.com/demos/progressbar)
+* [Slider](http://jqueryui.com/demos/slider)
 
 Once implementations for each widget are completed, the project will be transformed into a Gem for easy inclusion into Rails applications.
 
