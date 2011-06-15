@@ -1,6 +1,6 @@
 module JqueryUiButtonHelper
 
-  def render_buttonset(options = {}, &block)
+  def render_button_radios(options = {}, &block)
   
     # insert defaults
     options[:id] = "radio" unless options[:id]
