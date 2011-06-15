@@ -6,6 +6,7 @@ The following helpers have been implemented:
 
 * [Accordian](http://jqueryui.com/demos/accordion)
 * [Button](http://jqueryui.com/demos/button)
+* [ColorPicker](http://jquery.webspirited.com/2010/12/jquery-color-picker/)
 * [Datepicker](http://jqueryui.com/demos/datepicker)
 * [Tabs](http://jqueryui.com/demos/tabs)
 
@@ -51,6 +52,18 @@ _TODO_
 #### Split Button
 
 _TODO_
+
+### Color Picker
+
+    <%= form_for(@model) do |f| %>
+      <div class="field">
+        <%= f.label_for :color_option %> <br />
+        <%= f.color_picker :color_option %>
+      </div>
+    <% end %>
+
+See Matthew Hailwood's [blog post]](http://jquery.webspirited.com/2010/12/jquery-color-picker/) about the control, and
+checkout the repository [hailwood/jQuery-Color-Picker](https://github.com/hailwood/jQuery-Color-Picker) for more information.
 
 ### Datepicker
 
