@@ -16,40 +16,40 @@ Install [jQueryUI](http://jqueryui.com) components, and copy the required helper
 
 ### Accordian
 
-  <%= render_accordion() do |b| %>
-    <% b.add_pane("Pane 1")) %>
-      <!-- ... HTML content for pane goes here... -->
+    <%= render_accordion() do |b| %>
+      <% b.add_pane("Pane 1")) %>
+        <!-- ... HTML content for pane goes here... -->
+      <% end %>
+      <% b.add_pane("Pane 2") %>
+        <!-- ... HTML content for pane goes here... -->
+      <% end %>
+      <% b.add_pane("Pane 3") %>
+        <!-- ... HTML content for pane goes here... -->
+      <% end %>
     <% end %>
-    <% b.add_pane("Pane 2") %>
-      <!-- ... HTML content for pane goes here... -->
-    <% end %>
-    <% b.add_pane("Pane 3") %>
-      <!-- ... HTML content for pane goes here... -->
-    <% end %>
-  <% end %>
 
 ### ButtonSet
 
-  <%= render_buttonset() do |b| %>
-    <% b.add_button("Button 1"), :checked => true) %>
-    <% b.add_button("Button 2") %>
-    <% b.add_button("Button 3") %>
-    <% b.add_button("Button 4") %>
-  <% end %>
+    <%= render_buttonset() do |b| %>
+      <% b.add_button("Button 1"), :checked => true) %>
+      <% b.add_button("Button 2") %>
+      <% b.add_button("Button 3") %>
+      <% b.add_button("Button 4") %>
+    <% end %>
 
 ### Tabs
 
-  <%= render_tabs() do |b| %>
-    <% b.add_tab('Tab 1') do %>
-      <!-- ... HTML content for tab goes here... -->
+    <%= render_tabs() do |b| %>
+      <% b.add_tab('Tab 1') do %>
+        <!-- ... HTML content for tab goes here... -->
+      <% end %>
+      <% b.add_tab('Tab 2') do %>
+        <!-- ... HTML content for tab goes here... -->
+      <% end %>
+      <% b.add_tab('Tab 3') do %>
+        <!-- ... HTML content for tab goes here... -->
+      <% end %>
     <% end %>
-    <% b.add_tab('Tab 2') do %>
-      <!-- ... HTML content for tab goes here... -->
-    <% end %>
-    <% b.add_tab('Tab 3') do %>
-      <!-- ... HTML content for tab goes here... -->
-    <% end %>
-  <% end %>
 
 ## Work in Progress
 
