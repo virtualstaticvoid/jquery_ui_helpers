@@ -33,7 +33,21 @@ module JqueryUiAccordionHelper
     html << "</div>"
     
     html << "<script type=\"text/javascript\">"
-    html << "$(function() { $(\"##{options[:id]}\").accordion({ fillSpace: true }); });"
+    html << "$(function() { $(\"##{options[:id]}\").accordion({"
+    
+    # write out accordion options
+    #  see http://jqueryui.com/demos/accordion/#options for available list
+    if options[:options].is_a?(Hash)
+      first = true
+      options[:options].each do |key, value|
+        html << "," unless first
+        html << " #{key}: #{value}"
+        first = false
+      end
+    end
+    
+    html << "    });"
+    html << "  });"
     html << "</script>"
 
     raw(html)
