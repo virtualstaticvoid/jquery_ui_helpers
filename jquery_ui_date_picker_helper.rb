@@ -7,8 +7,10 @@ module JqueryUiDatePickerHelper
     sanitized_method_name ||= method.to_s.sub(/\?$/,"")
 
     value = @object.send(method)
+    has_error = @object.errors[method].present?
 
     html = ""
+    html << "<div class=\"field_with_errors\">" if has_error
     html << text_field_tag("#{@object_name.to_s}[#{method.to_s}]", value, options)
     html << "<script type=\"text/javascript\">"
     html << "  $(function() {"
@@ -28,6 +30,7 @@ module JqueryUiDatePickerHelper
     html << "    });"
     html << "  });"
     html << "</script>"
+    html << "</div>" if has_error
     
     html.html_safe
   
