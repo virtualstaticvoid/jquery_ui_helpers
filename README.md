@@ -38,8 +38,8 @@ This source URL resource must return matched items in JSON format. The request p
         <%= f.auto_complete(
               :product_id, 
               :source => product_search_path(:format => :json),
-              :min_length => 1,
-              :placeholder => 'Enter product code'
+              :placeholder => 'Enter product code',
+              :options => { 'minLength' => '1' }
               ) {|product_id| Product.find(product_id) unless product_id.nil? }  %>
       </div>
     <% end %>
