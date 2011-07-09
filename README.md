@@ -5,6 +5,7 @@ This project contains helper classes for creating jQuery UI widgets in your Rail
 The following helpers have been implemented:
 
 * [Accordian](http://jqueryui.com/demos/accordion)
+* [AutoComplete](http://jqueryui.com/demos/autocomplete)
 * [Button](http://jqueryui.com/demos/button)
 * [Datepicker](http://jqueryui.com/demos/datepicker)
 * [Tabs](http://jqueryui.com/demos/tabs)
@@ -25,6 +26,35 @@ Install [jQueryUI](http://jqueryui.com) components, and copy the required helper
         <!-- ... HTML content for pane goes here... -->
       <% end %>
     <% end %>
+
+### Auto Complete
+
+The auto complete field requires a `:source` URL resource and a `block` for resolving the selected item. 
+This source URL resource must return matched items in JSON format. The request parameter "term" gets added to that URL.
+
+    <%= form_for(@model) do |f| %>
+      <div class="field">
+        <%= f.label_for :product_id %> <br />
+        <%= f.auto_complete(
+              :product_id, 
+              :source => product_search_path(:format => :json),
+              :min_length => 1,
+              :placeholder => 'Enter product code'
+              ) {|product_id| Product.find(product_id) unless product_id.nil? }  %>
+      </div>
+    <% end %>
+
+Example JSON returned from source URL resource.
+
+    [
+      { "id": "1", "label": "Product 1", "value": "Product 1"},
+      { "id": "2", "label": "Product 2", "value": "Product 2"},
+      ...
+      { "id": "N", "label": "Product N", "value": "Product N"},
+    ]
+
+The `id` will be stored in a hidden form field, the `label` displayed in the drop down and the `value` is displayed 
+in the input field after a selection is made.
 
 ### Button
 
@@ -81,7 +111,6 @@ Detailed documentation of each helper needs to be added to the wiki.
 
 Additional helpers for the other jQuery UI widgets will be added, including:
 
-* [Autocomplete](http://jqueryui.com/demos/autocomplete)
 * [Dialog](http://jqueryui.com/demos/datepicker)
 * [Progressbar](http://jqueryui.com/demos/progressbar)
 * [Slider](http://jqueryui.com/demos/slider)
