@@ -5,6 +5,9 @@ module JqueryUiAccordionHelper
     # insert defaults
     options[:id] = "accordion" unless options[:id]
 
+    # jquery ui options
+    ui_options = options.delete(:options) || {}
+
     pane_builder = PaneBuilder.new
     
     # NB: must be a call to capture, so it behaves like content_for
@@ -18,8 +21,6 @@ module JqueryUiAccordionHelper
     html << ">"
     
     pane_builder.panes.each do |title, block|
-    
-      # TODO: incorporate pane options
     
       html << "<h3><a href=\"#\">#{title}</a></h3>"
       html << "<div>"
@@ -37,17 +38,13 @@ module JqueryUiAccordionHelper
     
     # write out accordion options
     #  see http://jqueryui.com/demos/accordion/#options for available list
-    if options[:options].is_a?(Hash)
-      first = true
-      options[:options].each do |key, value|
-        html << "," unless first
-        html << " #{key}: #{value}"
-        first = false
-      end
-    end
+    first = true
+    ui_options.each do |key, value|
+      html << "," unless first
+      html << " #{key}: #{value}"
+      first = false
     
-    html << "    });"
-    html << "  });"
+    html << " }); });"
     html << "</script>"
 
     raw(html)

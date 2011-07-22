@@ -8,6 +8,9 @@ module JqueryUiAutoCompleteHelper
   #
   def auto_complete(method, options={}, &block)
 
+    # jquery ui options
+    ui_options = options.delete(:options) || {}
+
     sanitized_object_name ||= @object_name.gsub(/\]\[|[^-a-zA-Z0-9:.]/, "_").sub(/_$/, "")
     sanitized_method_name ||= method.to_s.sub(/\?$/,"")
     has_error = @object.errors[method].present?
@@ -22,25 +25,23 @@ module JqueryUiAutoCompleteHelper
     html << "<script type=\"text/javascript\">"
     html << "  $(function() {"
     html << "    $('##{sanitized_object_name}_autocomplete_#{sanitized_method_name}').autocomplete({"
-    html << "         source: \"#{options[:source]}\", "
+    html << "         source: \"#{options[:source]}\" "
     
     # write out autocomplete options
     #  see http://jqueryui.com/demos/autocomplete/#options for available list
-    if options[:options].is_a?(Hash)
-      first = true
-      options[:options].each do |key, value|
-        html << "," unless first
-        html << " #{key}: #{value}"
-        first = false
-      end
+    first = true
+    ui_options.each do |key, value|
+      html << "," unless first
+      html << " #{key}: #{value}"
+      first = false
     end
     
-    html << "         select: function(event, ui) {"
-    html << "           $('##{sanitized_object_name}_#{sanitized_method_name}').val(ui.item.id);"
-    html << "         },"
-    html << "         change: function(event, ui) {"
-    html << "           if (ui.item == null) {"
-    html << "             $('##{sanitized_object_name}_#{sanitized_method_name}').val(null);"
+    html << "         , select: function(event, ui) {"
+    html << "             $('##{sanitized_object_name}_#{sanitized_method_name}').val(ui.item.id);"
+    html << "           } "
+    html << "         , change: function(event, ui) {"
+    html << "             if (ui.item == null) {"
+    html << "               $('##{sanitized_object_name}_#{sanitized_method_name}').val(null);"
     html << "           }"
     html << "         }"
     html << "    });"
