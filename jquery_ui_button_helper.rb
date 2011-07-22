@@ -1,9 +1,22 @@
 module JqueryUiButtonHelper
 
   def render_button_radios(options = {}, &block)
+    render_button_set('radio', options, &block)
+  end
+
+  def render_button_checkboxes(options = {}, &block)
+    render_button_set('checkbox', options, &block)
+  end
+  
+  private
+  
+  def render_button_set(type, options = {}, &block)
   
     # insert defaults
-    options[:id] = "radio" unless options[:id]
+    options[:id] = type unless options[:id]
+
+    # jquery ui options
+    ui_options = options.delete(:options) || {}
 
     button_builder = ButtonBuilder.new
     
@@ -19,8 +32,9 @@ module JqueryUiButtonHelper
     
     button_builder.buttons.each do |title, button_options|
       button_id = "#{options[:id]}_#{title.underscore}"
-      html << "<input type=\"radio\" id=\"#{button_id}\" name=\"#{options[:id]}\""
+      html << "<input type=\"#{type}\" id=\"#{button_id}\" name=\"#{options[:id]}\""
       html << " checked=\"checked\"" if button_options[:checked] == true
+      
       if options[:remote] == true
         html << " onclick=\"javascript: $('#a_#{button_id}').click();\""  
       end
@@ -36,13 +50,24 @@ module JqueryUiButtonHelper
     html << "</div>"
     
     html << "<script type=\"text/javascript\">"
-    html << "$(function() { $(\"##{options[:id]}\").buttonset(); });"
+    html << "$(function() { $(\"##{options[:id]}\").buttonset({"
+
+    # write out buttonset options
+    #  see http://jqueryui.com/demos/button/#options for available list
+    first = true
+    ui_options.each do |key, value|
+      html << "," unless first
+      html << " #{key}: #{value}"
+      first = false
+    end
+    
+    html << "}); });"
     html << "</script>"
 
     raw(html)
     
   end
-  
+
   class ButtonBuilder
 
     attr_reader :buttons
@@ -56,4 +81,5 @@ module JqueryUiButtonHelper
     end
   
   end
+  
 end
